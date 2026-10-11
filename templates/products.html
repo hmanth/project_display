@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search</title>
+</head>
+<body>
+
+    <h1>Product Search</h1>
+
+    <form action="/products" method="get">
+        <input
+            type="search"
+            name="search"
+            placeholder="Enter product name"
+            value="{{ search }}"
+        >
+
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+
+    {% if search %}
+        <h2>Search results for: {{ search }}</h2>
+    {% else %}
+        <h2>All Products</h2>
+    {% endif %}
+
+    {% for p in products %}
+        <div>
+            <h3>{{ p[1] }}</h3>
+            <p>Product ID: {{ p[0] }}</p>
+            <p>Price: ₹{{ p[2] }}</p>
+            <p>Category: {{ p[3] }}</p>
+        </div>
+        <hr>
+    {% else %}
+        <p>No matching products found.</p>
+    {% endfor %}
+
+    <a href="/">Back to Home</a>
+
+</body>
+</html>
